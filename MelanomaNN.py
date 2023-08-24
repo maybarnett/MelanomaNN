@@ -27,5 +27,7 @@ from sklearn.model_selection import train_test_split
 from scipy import stats
 from sklearn.preprocessing import LabelEncoder
 
-import pandas as pd
+folder_malignant_train = 'folder/skin-cancer-malignant-vs-benign/train/malignant'
 
+folder_benign_test = 'folder/skin-cancer-malignant-vs-benign/test/benign'
+folder_malignant_test = 'folder/skin-cancer-malignant-vs-benign/test/malignant'
