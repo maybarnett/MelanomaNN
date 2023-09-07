@@ -93,7 +93,7 @@ rows = 3
 
 for i in range(1, columns*rows +1):
     ax = fig.add_subplot(rows, columns, i)
-    if y_train[i] == 0:
+    if Y_train[i] == 0:
         ax.title.set_text('Benign')
     else:
         ax.title.set_text('Malignant')
@@ -101,16 +101,16 @@ for i in range(1, columns*rows +1):
 plt.show() 
 
 
-benign_train_count = y_train[np.where(y_train == 0)].shape[0]
-malignant_train_count = y_train[np.where(y_train == 1)].shape[0]
+benign_train_count = Y_train[np.where(Y_train == 0)].shape[0]
+malignant_train_count = Y_train[np.where(Y_train == 1)].shape[0]
 
 print("Training Data:")
 print(f"Benign Count: {benign_train_count}")
 print(f"Malignant Count: {malignant_train_count}")
 
 # Test Data
-benign_test_count = y_test[np.where(y_test == 0)].shape[0]
-malignant_test_count = y_test[np.where(y_test == 1)].shape[0]
+benign_test_count = Y_test[np.where(Y_test == 0)].shape[0]
+malignant_test_count = Y_test[np.where(Y_test == 1)].shape[0]
 
 print("\nTest Data:")
 print(f"Benign Count: {benign_test_count}")
