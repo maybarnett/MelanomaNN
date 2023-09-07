@@ -99,3 +99,19 @@ for i in range(1, columns*rows +1):
         ax.title.set_text('Malignant')
     plt.imshow(X_train[i], interpolation='nearest')
 plt.show() 
+
+
+benign_train_count = y_train[np.where(y_train == 0)].shape[0]
+malignant_train_count = y_train[np.where(y_train == 1)].shape[0]
+
+print("Training Data:")
+print(f"Benign Count: {benign_train_count}")
+print(f"Malignant Count: {malignant_train_count}")
+
+# Test Data
+benign_test_count = y_test[np.where(y_test == 0)].shape[0]
+malignant_test_count = y_test[np.where(y_test == 1)].shape[0]
+
+print("\nTest Data:")
+print(f"Benign Count: {benign_test_count}")
+print(f"Malignant Count: {malignant_test_count}")
