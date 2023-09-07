@@ -26,8 +26,8 @@ from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D, BatchNormal
 from sklearn.model_selection import train_test_split
 from scipy import stats
 from sklearn.preprocessing import LabelEncoder
-
-folder_malignant_train = 'folder/skin-cancer-malignant-vs-benign/train/malignant'
+folder_benign_train = 'skin-cancer-malignant-vs-benign/train/benign'
+folder_malignant_train = 'skin-cancer-malignant-vs-benign/train/malignant'
 
 folder_benign_test = 'skin-cancer-malignant-vs-benign/test/benign'
 folder_malignant_test = 'skin-cancer-malignant-vs-benign/test/malignant'
