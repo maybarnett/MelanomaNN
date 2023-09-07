@@ -26,6 +26,7 @@ from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D, BatchNormal
 from sklearn.model_selection import train_test_split
 from scipy import stats
 from sklearn.preprocessing import LabelEncoder
+
 folder_benign_train = 'skin-cancer-malignant-vs-benign/train/benign'
 folder_malignant_train = 'skin-cancer-malignant-vs-benign/train/malignant'
 
@@ -83,3 +84,18 @@ s = np.arange(X_test.shape[0])
 np.random.shuffle(s)
 X_test = X_test[s]
 Y_test = Y_test[s] 
+
+w=40
+h=30
+fig=plt.figure(figsize=(12, 8))
+columns = 5
+rows = 3
+
+for i in range(1, columns*rows +1):
+    ax = fig.add_subplot(rows, columns, i)
+    if y_train[i] == 0:
+        ax.title.set_text('Benign')
+    else:
+        ax.title.set_text('Malignant')
+    plt.imshow(X_train[i], interpolation='nearest')
+plt.show() 
