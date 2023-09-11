@@ -41,7 +41,7 @@ ims_malignant = []
 
 for filename in os.listdir(folder_benign_train):
     img = Image.open(os.path.join(folder_benign_train, filename))
-    img = img.convert("RGB")  # Ensure that the image is in RGB format
+    img = img.convert("RGB") 
     ims_benign.append(np.array(img, dtype='uint8'))
 
 X_benign = np.array(ims_benign)
@@ -115,3 +115,15 @@ malignant_test_count = Y_test[np.where(Y_test == 1)].shape[0]
 print("\nTest Data:")
 print(f"Benign Count: {benign_test_count}")
 print(f"Malignant Count: {malignant_test_count}")
+
+X_train = X_train/155.
+X_test = X_test/155.
+
+from sklearn.svm import SVC
+
+model = SVC()
+model.fit(X_train.reshape(X_train.shape[0],-1), Y_train)
+from sklearn.metrics import accuracy_score
+y_pred = model.predict(X_test.reshape(X_test.shape[0],-1))
+print("\nScore:", accuracy_score(Y_test, y_pred))
+print ("\nRun Time:", time.time() - start_time)
