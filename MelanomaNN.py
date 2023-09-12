@@ -13,17 +13,28 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import OrdinalEncoder
+from keras.applications import ResNet50
+from sklearn.metrics import accuracy_score 
+from keras.layers import Input, Flatten, Dense
+from keras.models import Model
 
 from keras import layers
 from keras import models
 
-model = models.Sequential()
-model.add(layers.Conv2D(32, (5,5), activation = 'relu', input_shape= (28,28,1)))
-model.add(layers.MaxPooling2D((2,2)))
-model.summary()
+num_classes = 10
+model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+x = model.output
+x = Flatten()(x)
+x = Dense(512, activation='relu')(x)  
+predictions = Dense(num_classes, activation='softmax')(x)  
+
+model = Model(inputs=model.input, outputs=predictions)
+
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
 
 np.random.seed(42)
-##from keras.utils.np_utils import to_categorical 
+# from keras.utils.np_utils import to_categorical 
 from sklearn.model_selection import train_test_split
 from scipy import stats
 from sklearn.preprocessing import LabelEncoder
@@ -131,7 +142,7 @@ X_test = X_test/155.
 
 from sklearn.svm import SVC
 
-model = SVC()
+
 model.fit(X_train.reshape(X_train.shape[0],-1), Y_train)
 from sklearn.metrics import accuracy_score
 y_pred = model.predict(X_test.reshape(X_test.shape[0],-1))
