@@ -1,4 +1,6 @@
 import pandas as pd
+import time
+start_time = time.time()
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
@@ -11,6 +13,14 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import OrdinalEncoder
+
+from keras import layers
+from keras import models
+
+model = models.Sequential()
+model.add(layers.Conv2D(32, (5,5), activation = 'relu', input_shape= (28,28,1)))
+model.add(layers.MaxPooling2D((2,2)))
+model.summary()
 
 np.random.seed(42)
 ##from keras.utils.np_utils import to_categorical 
