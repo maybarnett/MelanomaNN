@@ -8,7 +8,6 @@ import seaborn as sns
 import os
 from PIL import Image
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
@@ -17,7 +16,6 @@ from keras.applications import ResNet50
 from sklearn.metrics import accuracy_score 
 from keras.layers import Input, Flatten, Dense
 from keras.models import Model
-
 from keras import layers
 from keras import models
 
@@ -87,7 +85,6 @@ Y_malignant = np.ones(X_malignant.shape[0])
 Y_benign_test = np.zeros(X_benign_test.shape[0])
 Y_malignant_test = np.ones(X_malignant_test.shape[0])
 
-
 # merge 
 X_train = np.concatenate((X_benign, X_malignant), axis = 0)
 Y_train = np.concatenate((Y_benign, Y_malignant), axis = 0)
@@ -121,7 +118,6 @@ for i in range(1, columns*rows +1):
     plt.imshow(X_train[i], interpolation='nearest')
 plt.show() 
 
-
 benign_train_count = Y_train[np.where(Y_train == 0)].shape[0]
 malignant_train_count = Y_train[np.where(Y_train == 1)].shape[0]
 
@@ -137,11 +133,10 @@ print("\nTest Data:")
 print(f"Benign Count: {benign_test_count}")
 print(f"Malignant Count: {malignant_test_count}")
 
-X_train = X_train/155.
-X_test = X_test/155.
+X_train = X_train/255.
+X_test = X_test/255.
 
 from sklearn.svm import SVC
-
 
 model.fit(X_train.reshape(X_train.shape[0],-1), Y_train)
 from sklearn.metrics import accuracy_score
