@@ -30,7 +30,6 @@ model = Model(inputs=model.input, outputs=predictions)
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-
 np.random.seed(42)
 # from keras.utils.np_utils import to_categorical 
 from sklearn.model_selection import train_test_split
@@ -54,7 +53,6 @@ folder_malignant_test = 'skin-cancer-malignant-vs-benign/test/malignant'
 
 read = lambda imname: np.asarray(Image.open(imname).convert("RGB"))
 
-# training pictures 
 ims_benign = []
 ims_malignant = []
 
@@ -64,10 +62,11 @@ for filename in os.listdir(folder_benign_train):
     ims_benign.append(np.array(img, dtype='uint8'))
 
 X_benign = np.array(ims_benign)
+X_malignant=np.array(ims_malignant) 
 
 for filename in os.listdir(folder_malignant_train):
     img = Image.open(os.path.join(folder_malignant_train, filename))
-    img = img.convert("RGB")  # Ensure that the image is in RGB format
+    img = img.convert("RGB") 
     ims_malignant.append(np.array(img, dtype='uint8'))
 
 X_malignant = np.array(ims_malignant)
